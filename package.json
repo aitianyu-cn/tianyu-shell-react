@@ -1,0 +1,72 @@
+{
+    "name": "tianyu-shell-react",
+    "version": "0.0.1",
+    "description": "react components for tianyu shell framework",
+    "main": "index.js",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/lib/index.js",
+            "require": "./dist/lib/index.js",
+            "node": "./dist/lib/index.js",
+            "default": "./dist/lib/index.js"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            "*": [
+                "./dist/types/index.d.ts"
+            ]
+        }
+    },
+    "type": "commonjs",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "",
+        "before-build": "rimraf ./build ./dist",
+        "after-build": "rimraf ./build",
+        "compiler": "tsc && tsc-alias",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aitianyu-cn/tianyu-shell-react.git"
+    },
+    "keywords": [
+        "aitianyu.cn",
+        "react",
+        "tianyu-shell"
+    ],
+    "author": "dev.aitianyu.cn@outlook.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/aitianyu-cn/tianyu-shell-react/issues"
+    },
+    "homepage": "https://github.com/aitianyu-cn/tianyu-shell-react#readme",
+    "dependencies": {
+        "@aitianyu.cn/tianyu-shell": "^0.1.2",
+        "@aitianyu.cn/types": "^0.0.11",
+        "core-js": "^3.36.0",
+        "cross-env": "^7.0.3",
+        "fs": "^0.0.1-security",
+        "path": "^0.12.7",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^5.4.2"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.24.0",
+        "@babel/preset-react": "^7.23.3",
+        "@types/node": "^20.11.28",
+        "@types/react": "^18.2.66",
+        "@types/react-dom": "^18.2.22",
+        "@types/webpack-env": "^1.18.4",
+        "copyfiles": "^2.4.1",
+        "rimraf": "^5.0.5",
+        "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.8",
+        "typescript-eslint": "^7.2.0"
+    }
+}
