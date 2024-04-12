@@ -26,6 +26,10 @@
         "noEmit": false,
         "baseUrl": ".",
         "outDir": "./build",
-        "paths": {}
+        "paths": {
+            "components/*": ["packages/src/components/*"],
+            "infra/*": ["packages/src/infra/*"],
+            "model/*": ["packages/src/model/*"]
+        }
     }
 }

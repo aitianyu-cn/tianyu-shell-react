@@ -1,6 +1,6 @@
 /**@format */
 
-import { IReactControlProperty } from "./React";
+import { IReactControlProperty } from "../React";
 
 export type ReactToggleType = "default" | "square" | "line";
 

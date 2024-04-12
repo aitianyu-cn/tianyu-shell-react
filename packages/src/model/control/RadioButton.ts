@@ -1,6 +1,6 @@
 /**@format */
 
-import { IReactControlProperty } from "./React";
+import { IReactControlProperty } from "../React";
 import { ISingleSelectorGroup } from "./Selector";
 
 export interface IReactRadioButtonProperty extends IReactControlProperty {
