@@ -1,39 +1,35 @@
 /**@format */
-
-import { ActionCreator, Dispatcher, IActionDispatch, IStore, Reducer, StoreUtils, createStore } from "@aitianyu.cn/tianyu-store";
+import { InstanceId, StoreHelper } from "@aitianyu.cn/tianyu-store";
 import { guid } from "@aitianyu.cn/types";
-import { ITianyuElementSetStateAction } from "model/Element";
-import { IReactProperty, IReactState } from "model/React";
+import { IReactProperty, IReactState, TianyuShell } from "model/React";
+import { ErrorCode } from "model/constant/ErrorCode";
 import React from "react";
+import { MessageBundle } from "./i18n/Message";
 
-export class TianyuElement<P extends IReactProperty, S extends IReactState> extends React.Component<P, S> {
-    private SET_STATE_ACTION = ActionCreator.create<ITianyuElementSetStateAction<S>>("setState", true);
+export class TianyuElement<Prop extends IReactProperty, State extends IReactState> extends React.Component<Prop, State> {
+    private instanceId: InstanceId;
+    private initialState: State | undefined;
 
-    private store: IStore<S>;
-    private instanceId: string;
-
-    public constructor(props: P, state: S) {
+    public constructor(elementType: string, props: Prop, state: State | void) {
         super(props);
 
-        this.instanceId = guid();
-        this.store = createStore<S>(state);
-        this.store.withReducer(
-            new Map([
-                [
-                    "setState",
-                    function (this: IActionDispatch<S>, state: Readonly<S>, params: ITianyuElementSetStateAction<S>): Promise<S> {
-                        return StoreUtils.mergeState(state, params.newState);
-                    },
-                ],
-            ]),
+        const parentInstanceId = String(props["parent"]);
+        const elementId = String(props["id"]) || guid();
+        this.instanceId = StoreHelper.generateInstanceId(
+            parentInstanceId ? StoreHelper.newInstanceId(parentInstanceId) : TianyuShell.core.ui.store.instanceId,
+            elementType,
+            elementId,
         );
+        if (state) {
+            this.initialState = state;
+        }
     }
 
     // ################################################################################
     // Public Export Methods
     // ################################################################################
 
-    public getInstanceId(): string {
+    public getInstanceId(): InstanceId {
         return this.instanceId;
     }
 
@@ -45,27 +41,11 @@ export class TianyuElement<P extends IReactProperty, S extends IReactState> exte
      * @param state new state object or a function to get new state
      * @param callback set state callback after the setState is done
      */
-    public override setState(
-        state: ((prevState: Readonly<S>, props: Readonly<P>) => Pick<S, keyof S> | S | null) | (Pick<S, keyof S> | S | null),
-        callback?: () => void,
-    ): void {
-        const newState = typeof state === "function" ? state(this.store.getState(), this.props) : state;
-        if (newState) {
-            this.store.doDispatch(Dispatcher.createDispatcher(this.SET_STATE_ACTION({ newState: newState })));
-        }
-        callback?.();
+    public override setState(): void {
+        throw new Error(MessageBundle.getText(ErrorCode.TIANYU_ELEMENT_NOT_SUPPORT));
     }
 
     // ################################################################################
     // Internal used Methods
     // ################################################################################
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    protected withReducer(reducerMap: Map<string, Reducer<S, any>>): void {
-        this.store.withReducer(reducerMap);
-    }
-
-    protected getState(): S {
-        return this.store.getState();
-    }
 }

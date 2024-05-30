@@ -1,19 +1,16 @@
 /**@format */
 
+import { ITianyuShell } from "@aitianyu.cn/tianyu-shell/core";
+import { IterableType } from "@aitianyu.cn/tianyu-store";
+
+export const TianyuShell: ITianyuShell = (window as any).tianyuShell;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare type StandardLonghandProperties = any;
 
-export type IReactBaseType = string | boolean | number | IReactBaseType[];
+export interface IReactProperty extends IterableType {}
 
-export interface IReactProperty {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    [key: string]: IReactBaseType | Function | IReactProperty;
-}
-
-export interface IReactState {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    [key: string]: IReactBaseType | Function | IReactState;
-}
+export interface IReactState extends IterableType {}
 
 export interface IReactControlProperty {
     style?: StandardLonghandProperties;

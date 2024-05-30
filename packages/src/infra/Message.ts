@@ -19,7 +19,7 @@ const _i18nModuleCache: {
  * react: shell-react
  * ui: shell-ui
  */
-export type i18nModuleName = "content" | "control" | "navigator";
+export type i18nModuleName = "content" | "control" | "navigator" | "common";
 
 /**
  * Set international package to module cache

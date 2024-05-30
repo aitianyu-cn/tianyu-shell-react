@@ -35,8 +35,13 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                         /\/[a-z\-0-9]+(\/navigation)(\/resources)?((\/i18n)|(\/strings))?\/message.properties$/,
                     ),
                 );
+                setI18nModuleCache(
+                    DEFAULT_LANGUAGE,
+                    "common",
+                    require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message.properties$/),
+                );
             },
-            "tianyu-shell/ui/react/i18n/default",
+            "aitianyu.cn/tianyu-shell/ui/react/i18n/default",
         ),
     ["zh_CN"]: async () =>
         require.ensure(
@@ -69,8 +74,13 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                         /\/[a-z\-0-9]+(\/navigation)(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/,
                     ),
                 );
+                setI18nModuleCache(
+                    DEFAULT_LANGUAGE,
+                    "common",
+                    require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/),
+                );
             },
-            "tianyu-shell/ui/react/i18n/zh_CN",
+            "aitianyu.cn/tianyu-shell/ui/react/i18n/zh_CN",
         ),
     ["en_US"]: async () =>
         require.ensure(
@@ -103,8 +113,13 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                         /\/[a-z\-0-9]+(\/navigation)(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/,
                     ),
                 );
+                setI18nModuleCache(
+                    DEFAULT_LANGUAGE,
+                    "common",
+                    require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/),
+                );
             },
-            "tianyu-shell/ui/react/i18n/en_US",
+            "aitianyu.cn/tianyu-shell/ui/react/i18n/en_US",
         ),
 };
 
