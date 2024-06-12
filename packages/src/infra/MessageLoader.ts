@@ -41,7 +41,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message.properties$/),
                 );
             },
-            "aitianyu.cn/tianyu-shell/ui/react/i18n/default",
+            "aitianyu.cn/tianyu-shell-react/i18n/default",
         ),
     ["zh_CN"]: async () =>
         require.ensure(
@@ -76,7 +76,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/),
                 );
             },
-            "aitianyu.cn/tianyu-shell/ui/react/i18n/zh_CN",
+            "aitianyu.cn/tianyu-shell-react/i18n/zh_CN",
         ),
     ["en_US"]: async () =>
         require.ensure(
@@ -111,7 +111,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                     require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/),
                 );
             },
-            "aitianyu.cn/tianyu-shell/ui/react/i18n/en_US",
+            "aitianyu.cn/tianyu-shell-react/i18n/en_US",
         ),
 };
 
