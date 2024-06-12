@@ -16,7 +16,7 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "lib": ["dom", "dom.iterable", "esnext"],
-        "jsx": "preserve",
+        "jsx": "react-jsx",
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
         "noFallthroughCasesInSwitch": true,

@@ -50,11 +50,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                 setI18nModuleCache(
                     "zh_CN",
                     "content",
-                    require.context(
-                        "../../shell-core/src",
-                        true,
-                        /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/,
-                    ),
+                    require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_zh_CN.properties$/),
                 );
                 setI18nModuleCache(
                     "zh_CN",
@@ -89,11 +85,7 @@ const _i18nRequireContexts: { [local: string]: () => Promise<void> } = {
                 setI18nModuleCache(
                     "en_US",
                     "content",
-                    require.context(
-                        "../../shell-core/src",
-                        true,
-                        /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/,
-                    ),
+                    require.context("..", true, /\/[a-z\-0-9]+(\/resources)?((\/i18n)|(\/strings))?\/message_en_US.properties$/),
                 );
                 setI18nModuleCache(
                     "en_US",
