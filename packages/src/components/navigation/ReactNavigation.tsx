@@ -6,7 +6,7 @@ import { MapOfType, guid } from "@aitianyu.cn/types";
 import { ReactNavigationItem } from "./ReactNavigationItem";
 import { IReactState } from "@aitianyu.cn/tianyu-shell/react";
 import { TianyuElement } from "components/TianyuElement";
-import { HashHelper } from "infra/helper/HashHelper";
+import { HashHelper } from "@aitianyu.cn/tianyu-shell/ui";
 import {
     IReactNavigationProps,
     IReactNavigationSource,

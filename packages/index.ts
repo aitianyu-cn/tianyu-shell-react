@@ -7,17 +7,7 @@ export * from "./src/model/control/Toggle";
 export * from "./src/model/navigation/Navigation";
 export * from "./src/model/content/Content";
 
-export { type IHashMappedItem } from "./src/infra/helper/HashHelper";
-
 export { loadI18n } from "./src/infra/MessageLoader";
-
-import * as InfraHashHelper from "./src/infra/helper/HashHelper";
-import * as InfraRouterHelper from "./src/infra/helper/RouterHelper";
-
-export namespace ReactHelper {
-    export import HashHelper = InfraHashHelper.HashHelper;
-    export import RouterHelper = InfraRouterHelper.RouterHelper;
-}
 
 export * from "./src/components/TianyuElement";
 export * from "./src/components/TianyuStatelessElement";

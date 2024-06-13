@@ -8,7 +8,7 @@ import { ReactNavigationItem } from "./ReactNavigationItem";
 import { ReactHorizontalNavigationNarrowContext } from "./ReactHorizontalNavigationNarrowContext";
 import { IReactNavigationProps } from "model/navigation/Navigation";
 import { MessageBundle } from "./i18n/Message";
-import { RouterHelper } from "infra/helper/RouterHelper";
+import { RouterHelper } from "@aitianyu.cn/tianyu-shell/ui";
 
 import REACT_NAVIGATION_MENU_ICON from "./res/menu.svg";
 

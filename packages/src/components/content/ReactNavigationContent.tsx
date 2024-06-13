@@ -3,10 +3,10 @@
 import { Event } from "@aitianyu.cn/tianyu-shell/core";
 import React from "react";
 import { IReactState } from "@aitianyu.cn/tianyu-shell/react";
-import { HashHelper } from "infra/helper/HashHelper";
+import { HashHelper } from "@aitianyu.cn/tianyu-shell/ui";
+import { IReactContentProperty } from "model/content/Content";
 
 import "./css/navigation-content.css";
-import { IReactContentProperty } from "model/content/Content";
 
 const REACT_NAVIGATION_CONTENT_ONHASHCHANGED_LISTENER: string = "react-navigation-content-onhashChanged-listener";
 
