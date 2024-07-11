@@ -1,6 +1,6 @@
 /** @format */
 
-import { ITianyuStoreInterface } from "@aitianyu.cn/tianyu-store";
+import { ITianyuStoreInterface, SelectorFactor, StoreUtils } from "@aitianyu.cn/tianyu-store";
 import {
     CreateRadioButtonGroupAction,
     DestroyRadioButtonGroupAction,
@@ -12,7 +12,7 @@ import {
     UnselectItemAction,
 } from "./Action";
 import { GetAllSelectorsSelector, GetCurrentSelectionSelector, IsSelectedSelector } from "./Select";
-import { IReactRadioButtonState } from "model/control/RadioButton";
+import { IReactRadioButtonState, ReactRadioButtonStoreType } from "model/control/RadioButton";
 
 export const RadioButtonInterface = {
     core: {
@@ -32,4 +32,11 @@ export const RadioButtonInterface = {
     getAllSelections: GetAllSelectorsSelector,
 };
 
+export const RadioButtonExpose = {
+    getSelectors: SelectorFactor.makeVirtualSelector<IReactRadioButtonState, string[]>(),
+    getCurrent: SelectorFactor.makeVirtualSelector<IReactRadioButtonState, string>(),
+    getAllSelections: SelectorFactor.makeVirtualSelector<IReactRadioButtonState, string[]>(),
+};
+
 RadioButtonInterface as ITianyuStoreInterface<IReactRadioButtonState>;
+StoreUtils.registerExpose(RadioButtonExpose, ReactRadioButtonStoreType);

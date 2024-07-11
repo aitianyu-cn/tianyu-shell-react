@@ -2,17 +2,16 @@
 
 import React from "react";
 import {
-    IStore,
     InstanceId,
+    IStore,
     Missing,
     StoreUtils,
     TianyuStoreEntityInterfaceExpose,
     Unsubscribe,
 } from "@aitianyu.cn/tianyu-store";
-import { TianyuShell } from "model/React";
 import { IReactRadioButtonProperty, IReactRadioButtonState, ReactRadioButtonStoreType } from "model/control/RadioButton";
 import { RadioButtonInterface } from "./Interface";
-import { isMobile } from "@aitianyu.cn/tianyu-shell/core";
+import { isMobile, TianyuShellStore } from "@aitianyu.cn/tianyu-shell/core";
 import { Property } from "csstype";
 import { TianyuElement } from "components/TianyuElement";
 
@@ -28,7 +27,7 @@ export class ReactRadioButtonBase extends TianyuElement<IReactRadioButtonPropert
     public constructor(props: IReactRadioButtonProperty) {
         super(ReactRadioButtonStoreType, props);
 
-        this.store = TianyuShell.core.ui.store.store;
+        this.store = TianyuShellStore.getStore();
         this.instanceId = props.instanceId;
         this.id = props.id;
         this.unsubscribe = () => {};

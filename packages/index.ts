@@ -26,7 +26,7 @@ export namespace Components {
 }
 
 export const ComponentsInterface = {
-    ...ControlInterface.ReactControlInterface,
+    ...ControlInterface.ReactControlExpose,
 };
 
 export const ComponentsType = {
