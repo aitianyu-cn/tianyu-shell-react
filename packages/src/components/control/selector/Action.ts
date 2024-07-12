@@ -29,18 +29,18 @@ export const AddSelectorOptionsAction = ActionFactor.makeActionCreator<
 
 export const DeleteSelectorOptionsAction = ActionFactor.makeActionCreator<IReactSelectorState, KeyValuePair<string, string>[]>()
     .withHandler(function* (action) {
-        const current = yield* StoreUtils.Handler.doSelector(GetCurrentSelectionSelector(action.instanceId));
-        const isCurrentDeleted = yield* StoreUtils.Handler.doSelector(
+        const current = yield* StoreUtils.Handler.doSelectorWithThrow(GetCurrentSelectionSelector(action.instanceId));
+        const isCurrentDeleted = yield* StoreUtils.Handler.doSelectorWithThrow(
             GetOptionHasSelectorKey(action.instanceId, {
                 options: action.params,
                 key: current,
             }),
         );
 
-        const defaultSelection = yield* StoreUtils.Handler.doSelector(GetDefaultSelectionSelector(action.instanceId));
+        const defaultSelection = yield* StoreUtils.Handler.doSelectorWithThrow(GetDefaultSelectionSelector(action.instanceId));
         // in this case, current selection is not deleted, to check the default is deleted or not
         if (!isCurrentDeleted) {
-            const isDefaultDeleted = yield* StoreUtils.Handler.doSelector(
+            const isDefaultDeleted = yield* StoreUtils.Handler.doSelectorWithThrow(
                 GetOptionHasSelectorKey(action.instanceId, {
                     options: action.params,
                     key: defaultSelection,
@@ -54,7 +54,7 @@ export const DeleteSelectorOptionsAction = ActionFactor.makeActionCreator<IReact
         } else {
             // in this case, the current selection is deleted, to set the default as current and remove default from deleted list
             yield* StoreUtils.Handler.doAction(ChangeCurrentSelectionAction(action.instanceId, defaultSelection));
-            return yield* StoreUtils.Handler.doSelector(
+            return yield* StoreUtils.Handler.doSelectorWithThrow(
                 RemoveSelectorKeyFromOptions(action.instanceId, {
                     options: action.params,
                     key: defaultSelection,
@@ -81,7 +81,7 @@ export const ChangeDefaultSelectionAction = ActionFactor.makeActionCreator<IReac
 
 export const ChangeCurrentSelectionAction = ActionFactor.makeActionCreator<IReactSelectorState, string>()
     .withHandler(function* (action) {
-        const isSelectionValid = yield* StoreUtils.Handler.doSelector(
+        const isSelectionValid = yield* StoreUtils.Handler.doSelectorWithThrow(
             ValidateSelectionSelector(action.instanceId, action.params),
         );
         return isSelectionValid ? action.params : null;

@@ -76,7 +76,7 @@ export const LeaveSelectorAction = ActionFactor.makeActionCreator<IReactRadioBut
 export const DestroyStateIfNoRadioButton = ActionFactor.makeActionCreator<IReactRadioButtonState>().withHandler(function* (
     action,
 ) {
-    const allSelectors = yield* StoreUtils.Handler.doSelector(GetAllSelectorsSelector(action.instanceId));
+    const allSelectors = yield* StoreUtils.Handler.doSelectorWithThrow(GetAllSelectorsSelector(action.instanceId));
     if (allSelectors.length === 0) {
         yield* StoreUtils.Handler.doAction(
             TianyuStoreEntityInterfaceExpose["tianyu-store-entity-core"].action.destroyInstanceIfExist(action.instanceId),
