@@ -14,7 +14,10 @@ import {
     GetCurrentSelectionSelector,
     GetDefaultSelectionSelector,
     GetOptionHasSelectorKey,
+    GetOptionKeyByIndex,
     GetOptionValueSelector,
+    GetSelectorInfo,
+    GetSelectorOptionKeys,
     RemoveSelectorKeyFromOptions,
     ValidateSelectionSelector,
 } from "./Select";
@@ -33,6 +36,8 @@ export const SelectorInterface = {
         _validateSelection: ValidateSelectionSelector,
         _getOptionHasKey: GetOptionHasSelectorKey,
         _removeKeyFromOption: RemoveSelectorKeyFromOptions,
+        _stateInfo: GetSelectorInfo,
+        _getOptionByIndex: GetOptionKeyByIndex,
     },
 
     add: AddSelectorOptionsAction,
@@ -40,6 +45,7 @@ export const SelectorInterface = {
     change: ChangeCurrentSelectionAction,
     reset: ResetSelectionAction,
 
+    getOptionKeys: GetSelectorOptionKeys,
     getValue: GetOptionValueSelector,
     getDefault: GetDefaultSelectionSelector,
     getCurrent: GetCurrentSelectionSelector,
@@ -51,6 +57,7 @@ export const SelectorExpose = {
     change: ActionFactor.makeVirtualAction<IReactSelectorState, string>(),
     reset: ActionFactor.makeVirtualAction<IReactSelectorState, void>(),
 
+    getOptionKeys: SelectorFactor.makeVirtualSelector<IReactSelectorState, string[]>(),
     getValue: SelectorFactor.makeVirtualParameterSelector<IReactSelectorState, string, string | null>(),
     getDefault: SelectorFactor.makeVirtualSelector<IReactSelectorState, string>(),
     getCurrent: SelectorFactor.makeVirtualSelector<IReactSelectorState, string>(),

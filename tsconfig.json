@@ -3,6 +3,7 @@
         "packages/index.ts",
         "packages/src",
         "packages/resources.d.ts",
+        "script",
         "*.d.ts",
         "__test__"
     ],
@@ -27,9 +28,11 @@
         "baseUrl": ".",
         "outDir": "./build",
         "paths": {
+            "index": ["packages/index.ts"],
             "components/*": ["packages/src/components/*"],
             "infra/*": ["packages/src/infra/*"],
-            "model/*": ["packages/src/model/*"]
+            "model/*": ["packages/src/model/*"],
+            "script/*": ["script/*"]
         }
     }
 }

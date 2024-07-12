@@ -3,7 +3,7 @@
 import { ReactRadioButtonStoreType } from "model/control/RadioButton";
 import { RadioButtonExpose, RadioButtonInterface } from "./radio-button/Interface";
 import { TianyuShellStore } from "@aitianyu.cn/tianyu-shell/core";
-import { ITianyuStoreInterfaceImplementation, StoreUtils } from "@aitianyu.cn/tianyu-store";
+import { ITianyuStoreInterfaceImplementation } from "@aitianyu.cn/tianyu-store";
 import { ReactToggleButtonStoreType } from "model/control/Toggle";
 import { ToggleButtonExpose, ToggleButtonInterface } from "./toggle/Interface";
 import { ReactSelectorStoreType } from "model/control/Selector";

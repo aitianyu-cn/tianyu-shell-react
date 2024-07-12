@@ -47,3 +47,22 @@ export const RemoveSelectorKeyFromOptions = SelectorFactor.makeConstantSelector<
 
     return options;
 });
+
+export const GetSelectorInfo = SelectorFactor.makeSelector<IReactSelectorState, IReactSelectorState>(function (state) {
+    return state;
+});
+
+export const GetSelectorOptionKeys = SelectorFactor.makeSelector<IReactSelectorState, string[]>(function (state) {
+    return state.options.map((pair) => pair.key);
+});
+
+export const GetOptionKeyByIndex = SelectorFactor.makeParameterSelector<IReactSelectorState, number, string>(function (
+    state,
+    index,
+) {
+    if (index < 0 || index >= state.options.length) {
+        return state.current;
+    }
+
+    return state.options[index].key;
+});

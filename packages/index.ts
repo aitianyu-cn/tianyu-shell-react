@@ -3,6 +3,7 @@
 export * from "./src/model/React";
 export * from "./src/model/constant/ErrorCode";
 export * from "./src/model/control/RadioButton";
+export * from "./src/model/control/Selector";
 export * from "./src/model/control/Toggle";
 export * from "./src/model/navigation/Navigation";
 export * from "./src/model/content/Content";

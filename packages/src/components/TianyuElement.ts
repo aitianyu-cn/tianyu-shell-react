@@ -23,6 +23,10 @@ export class TianyuElement<Prop extends IReactProperty, State extends IReactStat
         this.forceUpdate();
     }
 
+    protected setUnload(): void {
+        this.loaded = false;
+    }
+
     protected isLoaded(): boolean {
         return this.loaded;
     }

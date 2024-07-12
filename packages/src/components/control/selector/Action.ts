@@ -67,7 +67,7 @@ export const DeleteSelectorOptionsAction = ActionFactor.makeActionCreator<IReact
             state,
             ["options"],
             state.options.filter((rawPair) => {
-                return !Boolean(data.find((deletedPair) => deletedPair.key === rawPair.key));
+                return !data.find((deletedPair) => deletedPair.key === rawPair.key);
             }),
         );
     });
@@ -81,7 +81,9 @@ export const ChangeDefaultSelectionAction = ActionFactor.makeActionCreator<IReac
 
 export const ChangeCurrentSelectionAction = ActionFactor.makeActionCreator<IReactSelectorState, string>()
     .withHandler(function* (action) {
-        const isSelectionValid = StoreUtils.Handler.doSelector(ValidateSelectionSelector(action.instanceId, action.params));
+        const isSelectionValid = yield* StoreUtils.Handler.doSelector(
+            ValidateSelectionSelector(action.instanceId, action.params),
+        );
         return isSelectionValid ? action.params : null;
     })
     .withReducer(function (state, selection) {
