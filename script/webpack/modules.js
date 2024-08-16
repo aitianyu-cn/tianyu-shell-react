@@ -79,7 +79,7 @@ module.exports.rules = [
                 options: {
                     presets: [
                         [
-                            "@babel/preset-env",
+                            "@babel/preset-react",
                             {
                                 corejs: "3",
                                 useBuiltIns: "usage",

@@ -1,6 +1,6 @@
 /**@format */
 
-module.exports.extensions = [".ts", ".js", ".css", ".view.json", ".i18n.js", ".tsx", "png", "svg"];
+module.exports.extensions = [".ts", ".js", ".css", ".view.json", ".i18n.js", ".tsx", ".jsx", "png", "svg"];
 
 module.exports.proxy = {
     "/remote-resources": {

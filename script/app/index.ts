@@ -36,11 +36,6 @@ async function init(): Promise<void> {
     };
 
     await initialTianyuShellAsync(initial);
-    const { waitLoading } = await import("@aitianyu.cn/tianyu-shell/core");
-    await waitLoading();
-
-    const { loadI18n } = await import("index");
-    await loadI18n();
 }
 
 init().then(async () => {
