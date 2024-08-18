@@ -1,0 +1,17 @@
+{
+    "widget": {
+        "button": {
+            "button": "normal button",
+            "toggle-button": "switch button",
+            "radio-button": "grouped single selection and switch button"
+        },
+        "selector": {
+            "dropdown-selector": "a dropdown list selector",
+            "checkbox-selector": "a list of check box and can select value"
+        }
+    },
+    "container": {
+        "navigation": {},
+        "content": {}
+    }
+}

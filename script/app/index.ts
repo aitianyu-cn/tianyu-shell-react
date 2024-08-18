@@ -1,6 +1,9 @@
 /** @format */
 
 import { ITianyuShellInitial } from "@aitianyu.cn/tianyu-shell";
+import { getInstanceId } from "script/store/Instance";
+import { StoreInterfaceImpl } from "script/store/InterfaceImpl";
+import { TIANYU_REACT_TEST_STORE_TYPE } from "script/store/StoreState";
 
 async function init(): Promise<void> {
     const { initialTianyuShellAsync } = await import("@aitianyu.cn/tianyu-shell");
@@ -39,17 +42,18 @@ async function init(): Promise<void> {
 }
 
 init().then(async () => {
-    const { Major } = await import("@aitianyu.cn/tianyu-shell/core");
-    const maj = document.createElement("div");
-    maj.style.width = "100px";
-    maj.style.height = "100px";
-    maj.style.backgroundColor = "#AAAAAA";
-    Major.append(maj);
+    const { TianyuShellStore } = await import("@aitianyu.cn/tianyu-shell/core");
+
+    TianyuShellStore.getStore().registerInterface(TIANYU_REACT_TEST_STORE_TYPE, StoreInterfaceImpl);
+    const instanceId = getInstanceId(TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]());
+    await TianyuShellStore.getStore().dispatch(StoreInterfaceImpl.core.creator(instanceId));
 
     const div = document.getElementById("tianyu_shell_root");
 
     if (div) {
+        const { loadI18n } = await import("infra/message/MessageLoader");
+        await loadI18n();
         const { App } = await import("../page/App");
-        App(div);
+        await App(div);
     }
 });

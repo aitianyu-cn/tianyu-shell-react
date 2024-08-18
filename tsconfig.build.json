@@ -27,9 +27,11 @@
         "baseUrl": ".",
         "outDir": "./build",
         "paths": {
+            "types/*": ["packages/src/types/*"],
             "components/*": ["packages/src/components/*"],
             "infra/*": ["packages/src/infra/*"],
-            "model/*": ["packages/src/model/*"]
+            "model/*": ["packages/src/model/*"],
+            "handler/*": ["packages/src/handler/*"]
         }
     }
 }

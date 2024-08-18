@@ -43,7 +43,6 @@ module.exports.rules = [
             // },
             path.resolve(__dirname, "loader/i18nLoader.js"),
         ],
-        exclude: /node_modules/,
     },
     {
         test: /\.tsx$/,

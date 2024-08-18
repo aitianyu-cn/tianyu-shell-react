@@ -29,9 +29,11 @@
         "outDir": "./build",
         "paths": {
             "index": ["packages/index.ts"],
+            "types/*": ["packages/src/types/*"],
             "components/*": ["packages/src/components/*"],
             "infra/*": ["packages/src/infra/*"],
             "model/*": ["packages/src/model/*"],
+            "handler/*": ["packages/src/handler/*"],
             "script/*": ["script/*"]
         }
     }
