@@ -18,6 +18,7 @@ export interface IToggleButtonProperty extends IButtonProperty {
 }
 
 export interface IRadioButtonProperty extends IButtonProperty {
+    group: string;
     size?: number;
     color?: string;
     selectedColor?: string;

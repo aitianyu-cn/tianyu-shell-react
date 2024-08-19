@@ -1,30 +1,29 @@
 /** @format */
 
 import React from "react";
-import { getDefaultButtonState } from "handler/button/ButtonHandler";
-import { ControlledElement } from "model/ControlledElement";
-import { IButtonPorts } from "model/interface/ButtonInterface";
-import { IButtonPortState } from "model/store/ButtonState";
 import { ReactControlledProperty } from "types/TianyuElement";
 import { IRadioButtonProperty } from "types/widget/Button";
 import { isMobile } from "@aitianyu.cn/tianyu-shell/core";
 import { radioButtonStylingGenerator } from "handler/button/RadioButtonHandler";
+import { ButtonBase } from "./ButtonBase";
+import { getDefaultRadioButtonState } from "handler/button/ButtonHandler";
+import { ButtonInterfaceTemplate } from "model/store/template/ButtonTemplate";
 
-export class RadioButton extends ControlledElement<IButtonPorts, IRadioButtonProperty, IButtonPortState> {
-    public constructor(prop: ReactControlledProperty<IButtonPorts, IRadioButtonProperty>) {
-        super(prop, getDefaultButtonState(prop));
+export class RadioButton extends ButtonBase<IRadioButtonProperty> {
+    public constructor(prop: ReactControlledProperty<IRadioButtonProperty>) {
+        super(prop, getDefaultRadioButtonState(prop));
     }
 
-    public override componentDidMount(): void {
-        this.setLoaded();
-
-        if (this.storeInterface) {
-            this.toSubscribeStateChange(this.storeInterface.state);
-        }
+    public override elementAfterLoaded(): void {
+        this.subscribeStateChange(
+            ButtonInterfaceTemplate.react.widget.button.radio.state(this.instanceId, {
+                group: this.props.group,
+                id: this.id,
+            }),
+        );
     }
-    public override componentWillUnmount(): void {
-        this.toUnsubscribeStateChange();
-        this.setUnload();
+    public override elementBeforeUnload(): void {
+        this.unsubscribeStateChange();
     }
 
     public override render(): React.ReactNode {
@@ -38,12 +37,16 @@ export class RadioButton extends ControlledElement<IButtonPorts, IRadioButtonPro
             </div>
         );
     }
-
     private onClick(): void {
-        if (!this.getState.enable) {
+        if (!this.shoudHandleClick()) {
             return;
         }
 
-        this.storeInterface && this.store.dispatch(this.storeInterface.click);
+        this.store.dispatch(
+            ButtonInterfaceTemplate.react.widget.button.radio.click(this.instanceId, {
+                group: this.props.group,
+                id: this.id,
+            }),
+        );
     }
 }

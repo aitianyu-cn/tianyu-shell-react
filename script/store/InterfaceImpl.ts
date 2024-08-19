@@ -16,6 +16,9 @@ import {
     SwitchToggleButtonAction,
 } from "./action/ButtonAction";
 import { GetNormalButtonState, GetRadioButtonState, GetToggleButtonState } from "./selector/ButtonSelector";
+import { AddDropdownSelectorAction, SelectDropdownSelectorAction } from "./action/SelectorAction";
+import { GetDropdownSelectorState } from "./selector/SelectorSelector";
+import { TianyuReact } from "tianyu-shell-react";
 
 export const StoreInterfaceImpl = {
     core: {
@@ -23,37 +26,49 @@ export const StoreInterfaceImpl = {
         destroy: ActionDestroyAction,
     },
 
-    widget: {
-        button: {
-            toggleButton: {
-                add: AddToggleButtonAction,
-                enable: EnableToggleButtonAction,
-                switch: SwitchToggleButtonAction,
+    react: {
+        widget: {
+            button: {
+                toggle: {
+                    add: AddToggleButtonAction,
+                    enable: EnableToggleButtonAction,
+                    click: SwitchToggleButtonAction,
 
-                get: GetToggleButtonState,
+                    state: GetToggleButtonState,
+                },
+
+                button: {
+                    add: AddNormalButtonAction,
+                    enable: EnableNormalButtonAction,
+                    click: ClickNormalButtonAction,
+
+                    state: GetNormalButtonState,
+                },
+
+                radio: {
+                    addGroup: AddRadioGroupAction,
+
+                    join: JoinRadioButtonGroupAction,
+                    enable: EnableRadioButtonAction,
+                    click: SelectRadioButtonAction,
+
+                    state: GetRadioButtonState,
+                },
             },
 
-            normal: {
-                add: AddNormalButtonAction,
-                enable: EnableNormalButtonAction,
-                click: ClickNormalButtonAction,
-
-                get: GetNormalButtonState,
-            },
-
-            radioButton: {
-                addGroup: AddRadioGroupAction,
-
-                join: JoinRadioButtonGroupAction,
-                enable: EnableRadioButtonAction,
-                select: SelectRadioButtonAction,
-
-                get: GetRadioButtonState,
+            select: {
+                dropdown: {
+                    add: AddDropdownSelectorAction,
+                    select: SelectDropdownSelectorAction,
+                    state: GetDropdownSelectorState,
+                },
             },
         },
-    },
 
-    container: {},
+        container: {},
+    },
 };
 
 StoreInterfaceImpl as ITianyuStoreInterface<AppStoreState>;
+StoreInterfaceImpl as TianyuReact.Template.Button;
+StoreInterfaceImpl as TianyuReact.Template.DropdownSelector;

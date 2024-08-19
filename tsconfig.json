@@ -28,7 +28,7 @@
         "baseUrl": ".",
         "outDir": "./build",
         "paths": {
-            "index": ["packages/index.ts"],
+            "tianyu-shell-react": ["packages/index.ts"],
             "types/*": ["packages/src/types/*"],
             "components/*": ["packages/src/components/*"],
             "infra/*": ["packages/src/infra/*"],

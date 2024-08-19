@@ -2,6 +2,7 @@
 
 import { IterableType } from "@aitianyu.cn/tianyu-store";
 import { MapOfString } from "@aitianyu.cn/types";
+import { IDropdownSelectorState } from "model/store/SelectorState";
 
 export interface IToggleButtonState extends IterableType {
     enable: boolean;
@@ -25,6 +26,11 @@ export interface AppStoreState extends IterableType {
         toggleButton: { [key: string]: IToggleButtonState };
         button: { [key: string]: INormalButtonState };
         radioButton: { [key: string]: IRadioButtonState };
+    };
+    selector: {
+        dropdown: {
+            [key: string]: IDropdownSelectorState;
+        };
     };
 }
 

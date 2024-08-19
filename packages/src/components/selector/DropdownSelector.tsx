@@ -3,30 +3,21 @@
 import React from "react";
 import { getDefaultDropdownSelectorState } from "handler/selector/DropdownSelectorHandler";
 import { ControlledElement } from "model/ControlledElement";
-import { IDropdownSelectorPorts } from "model/interface/SelectorInterface";
 import { IDropdownSelectorState } from "model/store/SelectorState";
 import { ReactControlledProperty } from "types/TianyuElement";
 import { IDropdownSelectorProperty } from "types/widget/Selector";
+import { DropdownSelectorInterfaceTemplate } from "model/store/template/SelectorTemplate";
 
-export class DropdownSelector extends ControlledElement<
-    IDropdownSelectorPorts,
-    IDropdownSelectorProperty,
-    IDropdownSelectorState
-> {
-    public constructor(prop: ReactControlledProperty<IDropdownSelectorPorts, IDropdownSelectorProperty>) {
+export class DropdownSelector extends ControlledElement<IDropdownSelectorProperty, IDropdownSelectorState> {
+    public constructor(prop: ReactControlledProperty<IDropdownSelectorProperty>) {
         super(prop, getDefaultDropdownSelectorState(prop));
     }
 
-    public override componentDidMount(): void {
-        this.setLoaded();
-
-        if (this.storeInterface) {
-            this.toSubscribeStateChange(this.storeInterface.state);
-        }
+    public override elementAfterLoaded(): void {
+        this.subscribeStateChange(DropdownSelectorInterfaceTemplate.react.widget.select.dropdown.state(this.instanceId, this.id));
     }
-    public override componentWillUnmount(): void {
-        this.toUnsubscribeStateChange();
-        this.setUnload();
+    public override elementBeforeUnload(): void {
+        this.unsubscribeStateChange();
     }
     public override render(): React.ReactNode {
         const basicStyle = this.props.style || {};
@@ -36,9 +27,10 @@ export class DropdownSelector extends ControlledElement<
             <div>
                 <select
                     style={{ ...basicStyle }}
-                    key={this.props.instanceId.id}
+                    key={this.id}
                     value={this.getState.selected}
-                    onChange={this.onSelectionChange.bind(this)}>
+                    onChange={this.onSelectionChange.bind(this)}
+                    disabled={!this.getState.enable}>
                     {this.getState.items.map((pair) => (
                         <option style={this.props.optionStyle?.style} key={pair.key} value={pair.key}>
                             {pair.value}
@@ -52,5 +44,11 @@ export class DropdownSelector extends ControlledElement<
     private onSelectionChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         const selectedIndex = event.target.selectedIndex;
         const selectedValue = this.getState.items[selectedIndex].key;
+        void this.store.dispatch(
+            DropdownSelectorInterfaceTemplate.react.widget.select.dropdown.select(this.instanceId, {
+                id: this.id,
+                value: selectedValue,
+            }),
+        );
     }
 }

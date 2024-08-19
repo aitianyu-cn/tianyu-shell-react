@@ -1,29 +1,24 @@
 /** @format */
 
 import React from "react";
-import { getDefaultButtonState } from "handler/button/ButtonHandler";
-import { ControlledElement } from "model/ControlledElement";
-import { IButtonPortState } from "model/store/ButtonState";
 import { ReactControlledProperty } from "types/TianyuElement";
 import { IButtonProperty } from "types/widget/Button";
-import { IButtonPorts } from "model/interface/ButtonInterface";
+import { ButtonBase } from "./ButtonBase";
+import { getDefaultButtonState } from "handler/button/ButtonHandler";
+import { ButtonInterfaceTemplate } from "model/store/template/ButtonTemplate";
 
-export class Button extends ControlledElement<IButtonPorts, IButtonProperty, IButtonPortState> {
-    public constructor(prop: ReactControlledProperty<IButtonPorts, IButtonProperty>) {
+export class Button extends ButtonBase {
+    public constructor(prop: ReactControlledProperty<IButtonProperty>) {
         super(prop, getDefaultButtonState(prop));
     }
 
-    public override componentDidMount(): void {
-        this.setLoaded();
+    public override elementAfterLoaded(): void {
+        this.subscribeStateChange(ButtonInterfaceTemplate.react.widget.button.button.state(this.instanceId, this.id));
+    }
+    public override elementBeforeUnload(): void {
+        this.unsubscribeStateChange();
+    }
 
-        if (this.storeInterface) {
-            this.toSubscribeStateChange(this.storeInterface.state);
-        }
-    }
-    public override componentWillUnmount(): void {
-        this.toUnsubscribeStateChange();
-        this.setUnload();
-    }
     public override render(): React.ReactNode {
         const style = this.props.style || {};
         return (
@@ -32,12 +27,11 @@ export class Button extends ControlledElement<IButtonPorts, IButtonProperty, IBu
             </button>
         );
     }
-
     private onClick(): void {
-        if (!this.getState.enable) {
+        if (!this.shoudHandleClick()) {
             return;
         }
 
-        this.storeInterface && this.store.dispatch(this.storeInterface.click);
+        this.store.dispatch(ButtonInterfaceTemplate.react.widget.button.button.click(this.instanceId, this.id));
     }
 }

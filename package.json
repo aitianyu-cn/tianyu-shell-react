@@ -46,8 +46,8 @@
     },
     "homepage": "https://github.com/aitianyu-cn/tianyu-shell-react#readme",
     "dependencies": {
-        "@aitianyu.cn/tianyu-shell": "^0.1.8",
-        "@aitianyu.cn/tianyu-store": "^0.2.11",
+        "@aitianyu.cn/tianyu-shell": "^0.1.9",
+        "@aitianyu.cn/tianyu-store": "^1.0.0-beta.1",
         "@aitianyu.cn/types": "^0.0.13",
         "core-js": "^3.36.0",
         "cross-env": "^7.0.3",

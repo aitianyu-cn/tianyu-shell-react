@@ -51,8 +51,8 @@ init().then(async () => {
     const div = document.getElementById("tianyu_shell_root");
 
     if (div) {
-        const { loadI18n } = await import("infra/message/MessageLoader");
-        await loadI18n();
+        const { TianyuReact } = await import("tianyu-shell-react");
+        TianyuReact.Infra.loadI18n();
         const { App } = await import("../page/App");
         await App(div);
     }

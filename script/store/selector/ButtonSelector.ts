@@ -1,13 +1,14 @@
 /** @format */
 
 import { SelectorFactor } from "@aitianyu.cn/tianyu-store";
-import { AppStoreState, IToggleButtonState } from "../StoreState";
-import { IButtonPortState } from "model/store/ButtonState";
+import { AppStoreState } from "../StoreState";
+import { TianyuReact } from "tianyu-shell-react";
 
-export const GetToggleButtonState = SelectorFactor.makeParameterSelector<AppStoreState, string, IButtonPortState>(function (
-    state,
-    id,
-): IButtonPortState {
+export const GetToggleButtonState = SelectorFactor.makeParameterSelector<
+    AppStoreState,
+    string,
+    TianyuReact.State.IButtonTemplateState
+>(function (state, id): TianyuReact.State.IButtonTemplateState {
     return (
         state.buttons.toggleButton[id] || {
             enable: false,
@@ -17,10 +18,11 @@ export const GetToggleButtonState = SelectorFactor.makeParameterSelector<AppStor
     );
 });
 
-export const GetNormalButtonState = SelectorFactor.makeParameterSelector<AppStoreState, string, IButtonPortState>(function (
-    state,
-    id,
-): IButtonPortState {
+export const GetNormalButtonState = SelectorFactor.makeParameterSelector<
+    AppStoreState,
+    string,
+    TianyuReact.State.IButtonTemplateState
+>(function (state, id): TianyuReact.State.IButtonTemplateState {
     const button = state.buttons.button[id];
     return {
         enable: !!button?.enable,
@@ -31,13 +33,13 @@ export const GetNormalButtonState = SelectorFactor.makeParameterSelector<AppStor
 
 export const GetRadioButtonState = SelectorFactor.makeParameterSelector<
     AppStoreState,
-    { group: string; button: string },
-    IButtonPortState
+    { group: string; id: string },
+    TianyuReact.State.IButtonTemplateState
 >(function (state, data) {
     const radioButton = state.buttons.radioButton[data.group];
     return {
-        enable: !radioButton.disabled.includes(data.button),
-        selected: radioButton.active === data.button,
-        text: radioButton.radios[data.button],
+        enable: !radioButton.disabled.includes(data.id),
+        selected: radioButton.active === data.id,
+        text: radioButton.radios[data.id],
     };
 });

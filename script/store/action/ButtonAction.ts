@@ -71,19 +71,17 @@ export const JoinRadioButtonGroupAction = ActionFactor.makeActionCreator<
     }
     return newState;
 });
-export const EnableRadioButtonAction = ActionFactor.makeActionCreator<
-    AppStoreState,
-    { group: string; button: string }
->().withReducer(function (state, data) {
-    return StoreUtils.State.getNewState(
-        state,
-        ["buttons", "radioButton", data.group, "disabled"],
-        state.buttons.radioButton[data.group].disabled.filter((disables) => disables !== data.button),
-    );
-});
-export const SelectRadioButtonAction = ActionFactor.makeActionCreator<
-    AppStoreState,
-    { group: string; button: string }
->().withReducer(function (state, data) {
-    return StoreUtils.State.getNewState(state, ["buttons", "radioButton", data.group, "active"], data.button);
-});
+export const EnableRadioButtonAction = ActionFactor.makeActionCreator<AppStoreState, { group: string; id: string }>().withReducer(
+    function (state, data) {
+        return StoreUtils.State.getNewState(
+            state,
+            ["buttons", "radioButton", data.group, "disabled"],
+            state.buttons.radioButton[data.group].disabled.filter((disables) => disables !== data.id),
+        );
+    },
+);
+export const SelectRadioButtonAction = ActionFactor.makeActionCreator<AppStoreState, { group: string; id: string }>().withReducer(
+    function (state, data) {
+        return StoreUtils.State.getNewState(state, ["buttons", "radioButton", data.group, "active"], data.id);
+    },
+);

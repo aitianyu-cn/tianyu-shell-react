@@ -1,15 +1,17 @@
 /** @format */
 
-import { IDropdownSelectorPorts } from "model/interface/SelectorInterface";
 import { IDropdownSelectorState } from "model/store/SelectorState";
+import { DropdownSelectorInterfaceTemplate } from "model/store/template/SelectorTemplate";
 import { ReactControlledProperty } from "types/TianyuElement";
 import { IDropdownSelectorProperty } from "types/widget/Selector";
 
 export function getDefaultDropdownSelectorState(
-    prop: ReactControlledProperty<IDropdownSelectorPorts, IDropdownSelectorProperty>,
+    prop: ReactControlledProperty<IDropdownSelectorProperty>,
 ): IDropdownSelectorState {
     return (
-        (prop.ports && prop.store.selecteWithThrow(prop.ports.state)) || {
+        prop.store.selecteWithThrow(
+            DropdownSelectorInterfaceTemplate.react.widget.select.dropdown.state(prop.intanceId, prop.id),
+        ) || {
             enable: false,
             items: [],
             selected: "",

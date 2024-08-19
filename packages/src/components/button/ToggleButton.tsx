@@ -1,23 +1,23 @@
 /** @format */
 
 import React from "react";
-import { ControlledElement } from "model/ControlledElement";
-import { IButtonPortState } from "model/store/ButtonState";
+import { IButtonTemplateState } from "model/store/ButtonState";
 import { ReactControlledProperty } from "types/TianyuElement";
 import { IToggleButtonProperty } from "types/widget/Button";
 import { isMobile } from "@aitianyu.cn/tianyu-shell/core";
 import { toggleButtonStylingGenerator } from "handler/button/ToggleButtonHandler";
-import { getDefaultButtonState } from "handler/button/ButtonHandler";
-import { IButtonPorts } from "model/interface/ButtonInterface";
+import { ButtonBase } from "./ButtonBase";
+import { ButtonInterfaceTemplate } from "model/store/template/ButtonTemplate";
+import { getDefaultToggleButtonState } from "handler/button/ButtonHandler";
 
-export class ToggleButton extends ControlledElement<IButtonPorts, IToggleButtonProperty, IButtonPortState> {
+export class ToggleButton extends ButtonBase {
     private selfSize: number;
     private selfAdditionLenght: number;
     private selfMarginLeft: number;
     private selfBorderRadio: number;
 
-    public constructor(prop: ReactControlledProperty<IButtonPorts, IToggleButtonProperty>) {
-        super(prop, getDefaultButtonState(prop));
+    public constructor(prop: ReactControlledProperty<IToggleButtonProperty>) {
+        super(prop, getDefaultToggleButtonState(prop));
 
         this.selfSize = this.props.size || Number(this.props.style?.height) || 50;
         this.selfAdditionLenght = this.props.lineLenght || this.selfSize / 4;
@@ -30,17 +30,13 @@ export class ToggleButton extends ControlledElement<IButtonPorts, IToggleButtonP
                 : 5;
     }
 
-    public override componentDidMount(): void {
-        this.setLoaded();
+    public override elementAfterLoaded(): void {
+        this.subscribeStateChange(ButtonInterfaceTemplate.react.widget.button.toggle.state(this.instanceId, this.id));
+    }
+    public override elementBeforeUnload(): void {
+        this.unsubscribeStateChange();
+    }
 
-        if (this.storeInterface) {
-            this.toSubscribeStateChange(this.storeInterface.state);
-        }
-    }
-    public override componentWillUnmount(): void {
-        this.toUnsubscribeStateChange();
-        this.setUnload();
-    }
     public override render(): React.ReactNode {
         const styles = toggleButtonStylingGenerator(
             this.props,
@@ -61,7 +57,7 @@ export class ToggleButton extends ControlledElement<IButtonPorts, IToggleButtonP
             </div>
         );
     }
-    public override onElementStateChange(previous: IButtonPortState): void {
+    public override elementStateChanged(previous: IButtonTemplateState): void {
         const selectionChange = this.getState.selected !== previous.selected;
 
         if (selectionChange) {
@@ -69,6 +65,9 @@ export class ToggleButton extends ControlledElement<IButtonPorts, IToggleButtonP
         } else {
             this.forceUpdate();
         }
+    }
+    protected override shoudHandleClick(): boolean {
+        return this.getState.enable || this.working;
     }
 
     private updateToggleFullState(): void {
@@ -97,10 +96,10 @@ export class ToggleButton extends ControlledElement<IButtonPorts, IToggleButtonP
         fnMove();
     }
     private onClick(): void {
-        if (!this.getState.enable || this.working) {
+        if (!this.shoudHandleClick()) {
             return;
         }
 
-        this.storeInterface && this.store.dispatch(this.storeInterface.click);
+        this.store.dispatch(ButtonInterfaceTemplate.react.widget.button.toggle.click(this.instanceId, this.id));
     }
 }
