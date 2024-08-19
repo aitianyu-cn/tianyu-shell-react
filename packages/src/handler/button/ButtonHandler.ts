@@ -3,7 +3,7 @@
 import { ButtonInterfaceTemplate } from "model/store/template/ButtonTemplate";
 import { IButtonTemplateState } from "model/store/ButtonState";
 import { ReactControlledProperty } from "types/TianyuElement";
-import { IButtonProperty, IRadioButtonProperty } from "types/widget/Button";
+import { IButtonProperty, IGroupableButtonProperty } from "types/widget/Button";
 
 export function getDefaultButtonState(prop: ReactControlledProperty<IButtonProperty>): IButtonTemplateState {
     return (
@@ -25,7 +25,7 @@ export function getDefaultToggleButtonState(prop: ReactControlledProperty<IButto
     );
 }
 
-export function getDefaultRadioButtonState(prop: ReactControlledProperty<IRadioButtonProperty>): IButtonTemplateState {
+export function getDefaultRadioButtonState(prop: ReactControlledProperty<IGroupableButtonProperty>): IButtonTemplateState {
     return (
         prop.store.selecteWithThrow(
             ButtonInterfaceTemplate.react.widget.button.radio.state(prop.intanceId, {

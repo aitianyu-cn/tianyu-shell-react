@@ -18,6 +18,7 @@ export interface DropdownSelectorStoreTemplate {
                     >;
                     state: ParameterSelectorProvider<any, string, IDropdownSelectorState>;
                 };
+                checkbox: {};
             };
         };
     };

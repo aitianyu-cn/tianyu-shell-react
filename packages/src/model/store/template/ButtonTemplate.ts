@@ -24,6 +24,21 @@ export const ButtonInterfaceTemplate = {
                     click: ActionFactor.makeVirtualAction<any, string>(),
                     state: SelectorFactor.makeVirtualParameterSelector<any, string, IButtonTemplateState>(),
                 },
+                checkbox: {
+                    click: ActionFactor.makeActionCreator<
+                        any,
+                        | string
+                        | {
+                              group: string;
+                              id: string;
+                          }
+                    >(),
+                    state: SelectorFactor.makeVirtualParameterSelector<
+                        any,
+                        string | { group: string; id: string },
+                        IButtonTemplateState
+                    >(),
+                },
             },
         },
     },

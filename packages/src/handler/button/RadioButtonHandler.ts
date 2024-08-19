@@ -3,11 +3,11 @@
 import React from "react";
 import { Property } from "csstype";
 import { IElementStyleProperty } from "types/TianyuElement";
-import { IRadioButtonProperty } from "types/widget/Button";
+import { IGroupableButtonProperty } from "types/widget/Button";
 import { CommonStylingsColor } from "handler/CommonStylingHandler";
 
 export function radioButtonStylingGenerator(
-    prop: IElementStyleProperty & IRadioButtonProperty,
+    prop: IElementStyleProperty & IGroupableButtonProperty,
     enable: boolean,
     selected: boolean,
 ) {

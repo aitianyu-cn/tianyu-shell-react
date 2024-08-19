@@ -1,9 +1,8 @@
 /** @format */
 
-import { IterableType } from "@aitianyu.cn/tianyu-store";
+import { ITianyuReactState } from "./State";
 
-export interface IButtonTemplateState extends IterableType {
-    enable: boolean;
+export interface IButtonTemplateState extends ITianyuReactState {
     selected: boolean;
     text: string;
 }

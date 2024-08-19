@@ -1,10 +1,16 @@
 /** @format */
 
-import { IterableType } from "@aitianyu.cn/tianyu-store";
 import { KeyValuePair } from "@aitianyu.cn/types";
+import { ITianyuReactState } from "./State";
 
-export interface IDropdownSelectorState extends IterableType {
-    enable: boolean;
-    selected: string;
+export interface ICommonSelectorState extends ITianyuReactState {
     items: KeyValuePair<string, string>[];
+}
+
+export interface IDropdownSelectorState extends ICommonSelectorState {
+    selected: string;
+}
+
+export interface ISelectorState extends ICommonSelectorState {
+    selected: string[];
 }
