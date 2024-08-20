@@ -13,11 +13,9 @@ export const AddToggleButtonAction = ActionFactor.makeActionCreator<
         [toggleButton.id]: toggleButton,
     });
 });
-
 export const EnableToggleButtonAction = ActionFactor.makeActionCreator<AppStoreState, string>().withReducer(function (state, id) {
     return StoreUtils.State.getNewState(state, ["buttons", "toggleButton", id, "enable"], true);
 });
-
 export const SwitchToggleButtonAction = ActionFactor.makeActionCreator<AppStoreState, string>().withReducer(function (state, id) {
     return StoreUtils.State.getNewState(
         state,
@@ -35,11 +33,9 @@ export const AddNormalButtonAction = ActionFactor.makeActionCreator<
         [button.id]: button,
     });
 });
-
 export const EnableNormalButtonAction = ActionFactor.makeActionCreator<AppStoreState, string>().withReducer(function (state, id) {
     return StoreUtils.State.getNewState(state, ["buttons", "button", id, "enable"], true);
 });
-
 export const ClickNormalButtonAction = ActionFactor.makeActionCreator<AppStoreState, string>().withReducer(function (state, id) {
     return StoreUtils.State.getNewState(state, ["buttons", "button", id, "count"], state.buttons.button[id].count + 1);
 });
@@ -85,3 +81,46 @@ export const SelectRadioButtonAction = ActionFactor.makeActionCreator<AppStoreSt
         return StoreUtils.State.getNewState(state, ["buttons", "radioButton", data.group, "active"], data.id);
     },
 );
+
+export const AddCheckboxButtonAction = ActionFactor.makeActionCreator<
+    AppStoreState,
+    { id: string } & IToggleButtonState
+>().withReducer(function (state, button) {
+    const newState = ObjectHelper.clone(state) as AppStoreState;
+    if (!button.group) {
+        newState.buttons.checkboxButton[button.id] = {
+            selected: button.selected,
+            enable: button.enable,
+            text: button.text,
+        };
+    }
+    return newState;
+});
+export const EnableCheckboxButtonAction = ActionFactor.makeActionCreator<AppStoreState, string>().withReducer(function (
+    state,
+    data,
+) {
+    const newState = ObjectHelper.clone(state) as AppStoreState;
+    if (typeof data === "string") {
+        newState.buttons.checkboxButton[data].enable = true;
+    }
+    return newState;
+});
+export const ClickCheckboxButtonAction = ActionFactor.makeActionCreator<
+    AppStoreState,
+    { group: string; id: string } | string
+>().withReducer(function (state, data) {
+    const newState = ObjectHelper.clone(state) as AppStoreState;
+    if (typeof data === "string") {
+        newState.buttons.checkboxButton[data].selected = !newState.buttons.checkboxButton[data].selected;
+    } else {
+        const selector = newState.selector.checkbox[data.group];
+        const index = selector.selected.indexOf(data.id);
+        if (index !== -1) {
+            selector.selected.splice(index, 1);
+        } else {
+            selector.selected.push(data.id);
+        }
+    }
+    return newState;
+});

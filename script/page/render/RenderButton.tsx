@@ -66,6 +66,25 @@ function getRadioButtonInterface(
     };
 }
 
+function getCheckboxButtonInterface(
+    enable: boolean,
+    text: string,
+    selected: boolean,
+): {
+    id: string;
+    state: IToggleButtonState;
+} {
+    const id = guid();
+    return {
+        id,
+        state: {
+            enable,
+            text,
+            selected,
+        },
+    };
+}
+
 export async function renderToggleButton(): Promise<React.ReactNode> {
     const instanceId = getInstanceId(TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]());
 
@@ -87,7 +106,7 @@ export async function renderToggleButton(): Promise<React.ReactNode> {
                 <TianyuReact.Components.ToggleButton
                     key={buttonInfo.id}
                     parentInstance={TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]()}
-                    intanceId={instanceId}
+                    instanceId={instanceId}
                     store={TianyuShellStore.getStore()}
                     id={buttonInfo.id}
                     style={{ height: 80, margin: 10 }}
@@ -116,7 +135,7 @@ export async function renderNormalButton(): Promise<React.ReactNode> {
                     parentInstance={TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]()}
                     store={TianyuShellStore.getStore()}
                     id={buttonInfo.id}
-                    intanceId={instanceId}
+                    instanceId={instanceId}
                     style={{ height: 80, width: 160, margin: 10, borderRadius: 40 }}
                 />
             ))}
@@ -153,9 +172,42 @@ export async function renderRadioButton(): Promise<React.ReactNode> {
                     parentInstance={TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]()}
                     store={TianyuShellStore.getStore()}
                     id={buttonInfo.id}
-                    intanceId={instanceId}
+                    instanceId={instanceId}
                     size={25}
                     style={{ margin: 15 }}
+                />
+            ))}
+        </div>
+    );
+}
+
+export async function renderCheckboxButton(): Promise<React.ReactNode> {
+    const instanceId = getInstanceId(TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]());
+    const buttons = [
+        getCheckboxButtonInterface(true, "single checkbox 1", false),
+        getCheckboxButtonInterface(false, "single checkbox 2", true),
+    ];
+    const actions = buttons.map((buttonInfo) =>
+        StoreInterfaceExpose.react.widget.button.checkbox.add(instanceId, {
+            id: buttonInfo.id,
+            enable: buttonInfo.state.enable,
+            selected: buttonInfo.state.selected,
+            text: buttonInfo.state.text,
+        }),
+    );
+
+    await TianyuShellStore.getStore().dispatch(StoreUtils.createBatchAction(actions));
+
+    return (
+        <div>
+            {buttons.map((buttonInfo) => (
+                <TianyuReact.Components.CheckboxButton
+                    key={buttonInfo.id}
+                    parentInstance={TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]()}
+                    store={TianyuShellStore.getStore()}
+                    id={buttonInfo.id}
+                    instanceId={instanceId}
+                    style={{ margin: 10, borderRadius: 40 }}
                 />
             ))}
         </div>

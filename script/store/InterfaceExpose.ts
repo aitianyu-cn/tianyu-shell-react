@@ -103,6 +103,43 @@ export const StoreInterfaceExpose = {
                         TianyuReact.State.IButtonTemplateState
                     >(),
                 },
+
+                checkbox: {
+                    add: ActionFactor.makeVirtualAction<
+                        AppStoreState,
+                        {
+                            id: string;
+                        } & IToggleButtonState,
+                        {
+                            id: string;
+                        } & IToggleButtonState
+                    >(),
+                    enable: ActionFactor.makeVirtualAction<AppStoreState, string, string>(),
+
+                    click: ActionFactor.makeVirtualAction<
+                        AppStoreState,
+                        | string
+                        | {
+                              group: string;
+                              id: string;
+                          },
+                        | string
+                        | {
+                              group: string;
+                              id: string;
+                          }
+                    >(),
+
+                    state: SelectorFactor.makeVirtualParameterSelector<
+                        AppStoreState,
+                        | string
+                        | {
+                              group: string;
+                              id: string;
+                          },
+                        TianyuReact.State.IButtonTemplateState
+                    >(),
+                },
             },
 
             select: {
@@ -129,6 +166,27 @@ export const StoreInterfaceExpose = {
                         TianyuReact.State.IDropdownSelectorState
                     >(),
                 },
+
+                checkbox: {
+                    add: ActionFactor.makeVirtualAction<
+                        AppStoreState,
+                        {
+                            id: string;
+                            enable: boolean;
+                            values: KeyValuePair<string, string>[];
+                            selected: string[];
+                            disabled: string[];
+                        },
+                        {
+                            id: string;
+                            enable: boolean;
+                            values: KeyValuePair<string, string>[];
+                            selected: string[];
+                            disabled: string[];
+                        }
+                    >(),
+                    state: SelectorFactor.makeVirtualParameterSelector<AppStoreState, string, TianyuReact.State.ISelectorState>(),
+                },
             },
         },
 
@@ -139,5 +197,6 @@ export const StoreInterfaceExpose = {
 StoreInterfaceExpose as ITianyuStoreInterfaceImplementation;
 StoreInterfaceExpose as TianyuReact.Template.Button;
 StoreInterfaceExpose as TianyuReact.Template.DropdownSelector;
+StoreInterfaceExpose as TianyuReact.Template.CommonSelector;
 
 StoreUtils.registerExpose(StoreInterfaceExpose, TIANYU_REACT_TEST_STORE_TYPE);

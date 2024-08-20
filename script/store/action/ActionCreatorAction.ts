@@ -9,9 +9,11 @@ export const ActionCreatorAction = ActionFactor.makeCreateStoreAction<AppStoreSt
             toggleButton: {},
             button: {},
             radioButton: {},
+            checkboxButton: {},
         },
         selector: {
             dropdown: {},
+            checkbox: {},
         },
     };
 });

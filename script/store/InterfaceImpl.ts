@@ -4,10 +4,13 @@ import { ITianyuStoreInterface } from "@aitianyu.cn/tianyu-store";
 import { AppStoreState } from "./StoreState";
 import { ActionCreatorAction, ActionDestroyAction } from "./action/ActionCreatorAction";
 import {
+    AddCheckboxButtonAction,
     AddNormalButtonAction,
     AddRadioGroupAction,
     AddToggleButtonAction,
+    ClickCheckboxButtonAction,
     ClickNormalButtonAction,
+    EnableCheckboxButtonAction,
     EnableNormalButtonAction,
     EnableRadioButtonAction,
     EnableToggleButtonAction,
@@ -15,9 +18,14 @@ import {
     SelectRadioButtonAction,
     SwitchToggleButtonAction,
 } from "./action/ButtonAction";
-import { GetNormalButtonState, GetRadioButtonState, GetToggleButtonState } from "./selector/ButtonSelector";
-import { AddDropdownSelectorAction, SelectDropdownSelectorAction } from "./action/SelectorAction";
-import { GetDropdownSelectorState } from "./selector/SelectorSelector";
+import {
+    GetCheckboxButtonState,
+    GetNormalButtonState,
+    GetRadioButtonState,
+    GetToggleButtonState,
+} from "./selector/ButtonSelector";
+import { AddCheckboxSelectorAction, AddDropdownSelectorAction, SelectDropdownSelectorAction } from "./action/SelectorAction";
+import { GetCheckboxSelectorState, GetDropdownSelectorState } from "./selector/SelectorSelector";
 import { TianyuReact } from "tianyu-shell-react";
 
 export const StoreInterfaceImpl = {
@@ -54,6 +62,15 @@ export const StoreInterfaceImpl = {
 
                     state: GetRadioButtonState,
                 },
+
+                checkbox: {
+                    add: AddCheckboxButtonAction,
+                    enable: EnableCheckboxButtonAction,
+
+                    click: ClickCheckboxButtonAction,
+
+                    state: GetCheckboxButtonState,
+                },
             },
 
             select: {
@@ -61,6 +78,12 @@ export const StoreInterfaceImpl = {
                     add: AddDropdownSelectorAction,
                     select: SelectDropdownSelectorAction,
                     state: GetDropdownSelectorState,
+                },
+
+                checkbox: {
+                    add: AddCheckboxSelectorAction,
+
+                    state: GetCheckboxSelectorState,
                 },
             },
         },
@@ -72,3 +95,4 @@ export const StoreInterfaceImpl = {
 StoreInterfaceImpl as ITianyuStoreInterface<AppStoreState>;
 StoreInterfaceImpl as TianyuReact.Template.Button;
 StoreInterfaceImpl as TianyuReact.Template.DropdownSelector;
+StoreInterfaceImpl as TianyuReact.Template.CommonSelector;

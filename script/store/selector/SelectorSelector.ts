@@ -17,3 +17,17 @@ export const GetDropdownSelectorState = SelectorFactor.makeParameterSelector<
         }
     );
 });
+
+export const GetCheckboxSelectorState = SelectorFactor.makeParameterSelector<
+    AppStoreState,
+    string,
+    TianyuReact.State.ISelectorState
+>(function (state, id) {
+    return (
+        state.selector.checkbox[id] || {
+            enable: false,
+            selected: [],
+            items: [],
+        }
+    );
+});

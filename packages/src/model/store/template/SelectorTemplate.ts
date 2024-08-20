@@ -1,8 +1,8 @@
 /** @format */
 
 import { ActionFactor, SelectorFactor, StoreUtils } from "@aitianyu.cn/tianyu-store";
-import { DropdownSelectorStoreTemplate } from "model/interface/SelectorInterface";
-import { IDropdownSelectorState } from "model/store/SelectorState";
+import { DropdownSelectorStoreTemplate, SelectorStoreTemplate } from "model/interface/SelectorInterface";
+import { IDropdownSelectorState, ISelectorState } from "model/store/SelectorState";
 
 export const DropdownSelectorInterfaceTemplate = {
     react: {
@@ -23,6 +23,20 @@ export const DropdownSelectorInterfaceTemplate = {
     },
 };
 
+export const CheckboxSelectorInterfaceTemplate = {
+    react: {
+        widget: {
+            select: {
+                checkbox: {
+                    state: SelectorFactor.makeVirtualParameterSelector<any, string, ISelectorState>(),
+                },
+            },
+        },
+    },
+};
+
 DropdownSelectorInterfaceTemplate as DropdownSelectorStoreTemplate;
+CheckboxSelectorInterfaceTemplate as SelectorStoreTemplate;
 
 StoreUtils.registerTemplate(DropdownSelectorInterfaceTemplate);
+StoreUtils.registerTemplate(CheckboxSelectorInterfaceTemplate);

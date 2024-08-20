@@ -3,6 +3,7 @@
 export type ReactToggleType = "default" | "square" | "line";
 
 export interface IButtonProperty {
+    size?: number;
     lineLenght?: number;
     type?: ReactToggleType;
     borderRadio?: number;
@@ -10,17 +11,19 @@ export interface IButtonProperty {
 }
 
 export interface IToggleButtonProperty extends IButtonProperty {
-    size?: number;
     defaultState?: boolean;
     selectedBackground?: string;
     unSelectedBackground?: string;
     toggleColor?: string;
 }
 
-export interface IGroupableButtonProperty extends IButtonProperty {
+export interface IRadioButtonProperty extends IButtonProperty {
     group: string;
-    size?: number;
     color?: string;
     selectedColor?: string;
     insideMargin?: number;
+}
+
+export interface ICheckboxButtonProperty extends IButtonProperty {
+    group?: string;
 }

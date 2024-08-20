@@ -1,13 +1,13 @@
 /** @format */
 
 import { IActionProvider, ParameterSelectorProvider } from "@aitianyu.cn/tianyu-store";
-import { IDropdownSelectorState } from "model/store/SelectorState";
+import { IDropdownSelectorState, ISelectorState } from "model/store/SelectorState";
 
 export interface DropdownSelectorStoreTemplate {
     react: {
         widget: {
             select: {
-                dropdown: {
+                dropdown?: {
                     select: IActionProvider<
                         any,
                         {
@@ -18,7 +18,18 @@ export interface DropdownSelectorStoreTemplate {
                     >;
                     state: ParameterSelectorProvider<any, string, IDropdownSelectorState>;
                 };
-                checkbox: {};
+            };
+        };
+    };
+}
+
+export interface SelectorStoreTemplate {
+    react: {
+        widget: {
+            select: {
+                checkbox?: {
+                    state: ParameterSelectorProvider<any, string, ISelectorState>;
+                };
             };
         };
     };

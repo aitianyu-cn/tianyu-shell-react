@@ -28,7 +28,7 @@ export abstract class StoreElement<P extends IControlledElementProperty, S exten
         return this.props.parentInstance;
     }
     public get instanceId(): InstanceId {
-        return this.props.intanceId;
+        return this.props.instanceId;
     }
     public get getState(): Readonly<S> {
         return this.selfState;

@@ -10,7 +10,7 @@ export function getDefaultDropdownSelectorState(
 ): IDropdownSelectorState {
     return (
         prop.store.selecteWithThrow(
-            DropdownSelectorInterfaceTemplate.react.widget.select.dropdown.state(prop.intanceId, prop.id),
+            DropdownSelectorInterfaceTemplate.react.widget.select.dropdown.state(prop.instanceId, prop.id),
         ) || {
             enable: false,
             items: [],

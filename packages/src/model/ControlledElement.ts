@@ -13,6 +13,9 @@ export abstract class ControlledElement<P = {}, S extends IterableType = {}> ext
 
         this.unsubscribeStateChangeCallback = undefined;
     }
+    public get supportSubscribe(): boolean {
+        return this.props.subscribeable === undefined ? true : this.props.subscribeable;
+    }
     public override get storeType(): string {
         return TIANYU_REACT_DEFAULT_STORE_TYPE;
     }
@@ -20,6 +23,9 @@ export abstract class ControlledElement<P = {}, S extends IterableType = {}> ext
         this.forceUpdate();
     }
     protected subscribeStateChange(selector: IInstanceSelector<S>): void {
+        if (!this.supportSubscribe) {
+            return;
+        }
         this.unsubscribeStateChangeCallback = this.store.subscribe(selector, this.onStateChange.bind(this));
     }
     protected unsubscribeStateChange(): void {

@@ -3,11 +3,11 @@
 import React from "react";
 import { Property } from "csstype";
 import { IElementStyleProperty } from "types/TianyuElement";
-import { IGroupableButtonProperty } from "types/widget/Button";
+import { IRadioButtonProperty } from "types/widget/Button";
 import { CommonStylingsColor } from "handler/CommonStylingHandler";
 
 export function radioButtonStylingGenerator(
-    prop: IElementStyleProperty & IGroupableButtonProperty,
+    prop: IElementStyleProperty & IRadioButtonProperty,
     enable: boolean,
     selected: boolean,
 ) {
@@ -33,7 +33,7 @@ export function radioButtonStylingGenerator(
         borderRadius: selectSize,
         margin: (size - selectSize) / 2,
         opacity: `${selected ? "100" : "0"}%`,
-        backgroundColor: enable ? prop.selectedColor || "var(--ts_ui_blk_2)" : CommonStylingsColor.disable.background,
+        backgroundColor: enable ? prop.selectedColor || "var(--ts_ui_blk_2)" : CommonStylingsColor.disable.selected,
     };
     const textStyle: React.CSSProperties = {
         marginTop: "auto",

@@ -48,9 +48,15 @@ init().then(async () => {
     const instanceId = getInstanceId(TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]());
     await TianyuShellStore.getStore().dispatch(StoreInterfaceImpl.core.creator(instanceId));
 
+    document.body.style.height = "100%";
+    document.body.style.width = "100%";
+
     const div = document.getElementById("tianyu_shell_root");
 
     if (div) {
+        div.style.height = "100%";
+        div.style.width = "100%";
+
         const { TianyuReact } = await import("tianyu-shell-react");
         TianyuReact.Infra.loadI18n();
         const { App } = await import("../page/App");

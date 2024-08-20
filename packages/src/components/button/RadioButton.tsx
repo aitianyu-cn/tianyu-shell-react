@@ -2,15 +2,15 @@
 
 import React from "react";
 import { ReactControlledProperty } from "types/TianyuElement";
-import { IGroupableButtonProperty } from "types/widget/Button";
+import { IRadioButtonProperty } from "types/widget/Button";
 import { isMobile } from "@aitianyu.cn/tianyu-shell/core";
 import { radioButtonStylingGenerator } from "handler/button/RadioButtonHandler";
 import { ButtonBase } from "./ButtonBase";
 import { getDefaultRadioButtonState } from "handler/button/ButtonHandler";
 import { ButtonInterfaceTemplate } from "model/store/template/ButtonTemplate";
 
-export class RadioButton extends ButtonBase<IGroupableButtonProperty> {
-    public constructor(prop: ReactControlledProperty<IGroupableButtonProperty>) {
+export class RadioButton extends ButtonBase<IRadioButtonProperty> {
+    public constructor(prop: ReactControlledProperty<IRadioButtonProperty>) {
         super(prop, getDefaultRadioButtonState(prop));
     }
 
