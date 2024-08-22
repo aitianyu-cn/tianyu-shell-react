@@ -32,7 +32,7 @@ export class CheckboxSelector extends ControlledElement<ISelectorProperty, ISele
     }
     public override render(): React.ReactNode {
         return (
-            <div key={this.id}>
+            <div key={this.id} style={{ ...this.props.style }}>
                 {this.getState.items.map((item) => (
                     <CheckboxButton
                         key={item.key}

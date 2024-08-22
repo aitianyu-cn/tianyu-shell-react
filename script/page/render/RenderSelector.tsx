@@ -41,24 +41,23 @@ async function getDropdownSelector(enable: boolean): Promise<React.ReactNode> {
     );
 }
 
-async function getCheckboxSelector(enable: boolean, subscribeable: boolean): Promise<React.ReactNode> {
+async function getCheckboxSelector(enable: boolean, subscribeable: boolean, count: number): Promise<React.ReactNode> {
     const instanceId = getInstanceId(TianyuShellStore.InstanceMap["tianyu-shell-system-non-history-entity"]());
 
     const id = guid();
+
+    const value = [];
+    for (let index = 0; index < count; ++index) {
+        value.push({ key: `checkbox-selector-key-${index}`, value: `Value ${index}` });
+    }
 
     await TianyuShellStore.getStore().dispatch(
         StoreInterfaceExpose.react.widget.select.checkbox.add(instanceId, {
             id,
             enable,
-            values: [
-                { key: "dropdown-key-1", value: "Value 1" },
-                { key: "dropdown-key-2", value: "Value 2" },
-                { key: "dropdown-key-3", value: "Value 3" },
-                { key: "dropdown-key-4", value: "Value 4" },
-                { key: "dropdown-key-5", value: "Value 5" },
-            ],
-            selected: ["dropdown-key-2", "dropdown-key-3"],
-            disabled: ["dropdown-key-3"],
+            values: value,
+            selected: ["checkbox-selector-key-2", "checkbox-selector-key-3"],
+            disabled: ["checkbox-selector-key-3"],
         }),
     );
 
@@ -70,6 +69,7 @@ async function getCheckboxSelector(enable: boolean, subscribeable: boolean): Pro
             store={TianyuShellStore.getStore()}
             id={id}
             subscribeable={subscribeable}
+            style={{ height: "fit-content", maxHeight: "300px" }}
         />
     );
 }
@@ -86,11 +86,11 @@ export async function renderDropdownSelector(): Promise<React.ReactNode> {
 export async function renderCheckboxSelector(): Promise<React.ReactNode> {
     return (
         <div>
-            {await getCheckboxSelector(true, false)}
+            {await getCheckboxSelector(true, false, 5)}
             <div style={{ height: 10 }}></div>
-            {await getCheckboxSelector(false, false)}
+            {await getCheckboxSelector(false, false, 6)}
             <div style={{ height: 10 }}></div>
-            {await getCheckboxSelector(true, true)}
+            {await getCheckboxSelector(true, true, 50)}
         </div>
     );
 }

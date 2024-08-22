@@ -7,7 +7,7 @@ export interface DropdownSelectorStoreTemplate {
     react: {
         widget: {
             select: {
-                dropdown?: {
+                dropdown: {
                     select: IActionProvider<
                         any,
                         {
@@ -27,7 +27,7 @@ export interface SelectorStoreTemplate {
     react: {
         widget: {
             select: {
-                checkbox?: {
+                checkbox: {
                     state: ParameterSelectorProvider<any, string, ISelectorState>;
                 };
             };

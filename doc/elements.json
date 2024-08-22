@@ -3,15 +3,21 @@
         "button": {
             "button": "normal button",
             "toggle-button": "switch button",
-            "radio-button": "grouped single selection and switch button"
+            "radio-button": "grouped single selection and switch button",
+            "checkbox-button": "support grouped and single checkbox button"
         },
         "selector": {
             "dropdown-selector": "a dropdown list selector",
-            "checkbox-selector": "a list of check box and can select value"
+            "checkbox-selector": "a list of check box and can select value",
+            "tree-selector": "selector based on tree structure"
         }
     },
     "container": {
-        "navigation": {},
+        "navigation": {
+            "navigation-item": "navigation single button",
+            "navigation-view": "a view only navigation item, support url jump",
+            "navigation-list": "a navigation button supporting to click dropdown list"
+        },
         "content": {}
     }
 }
