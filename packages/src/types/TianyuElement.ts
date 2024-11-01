@@ -29,6 +29,14 @@ export interface IElementStyleProperty {
     style?: React.CSSProperties;
 }
 
+/**
+ * Tianyu React Controlled Element Property
+ * Combined with Controlled Element Property and Element Style Property
+ */
 export type ReactControlledProperty<P = {}> = IControlledElementProperty & IElementStyleProperty & P;
 
+/**
+ * Tianyu React Full State Element Property
+ * Combined with State Full Element Property and Element Style Property
+ */
 export type ReactStatefullProperty<P = {}, S extends IReactState = {}> = IStatefullElementProperty<S> & IElementStyleProperty & P;

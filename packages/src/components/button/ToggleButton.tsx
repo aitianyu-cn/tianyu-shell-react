@@ -20,7 +20,7 @@ export class ToggleButton extends ButtonBase {
         super(prop, getDefaultToggleButtonState(prop));
 
         this.selfSize = this.props.size || Number(this.props.style?.height) || 50;
-        this.selfAdditionLenght = this.props.lineLenght || this.selfSize / 4;
+        this.selfAdditionLenght = this.props.lineLength || this.selfSize / 4;
         this.selfMarginLeft = this.getState.selected ? this.selfSize + this.selfAdditionLenght : 0;
         this.selfBorderRadio =
             typeof this.props.borderRadio === "number"

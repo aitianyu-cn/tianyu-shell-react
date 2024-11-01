@@ -85,12 +85,27 @@ export async function renderDropdownSelector(): Promise<React.ReactNode> {
 
 export async function renderCheckboxSelector(): Promise<React.ReactNode> {
     return (
-        <div>
-            {await getCheckboxSelector(true, false, 5)}
+        <div style={{ width: "80%" }}>
+            <div style={{ height: "fit-content", maxHeight: "300px", backgroundColor: "lightgrey", padding: "15px" }}>
+                {await getCheckboxSelector(true, false, 5)}
+            </div>
             <div style={{ height: 10 }}></div>
-            {await getCheckboxSelector(false, false, 6)}
+            <div style={{ height: "fit-content", maxHeight: "300px", backgroundColor: "lightgrey", padding: "15px" }}>
+                {await getCheckboxSelector(false, false, 6)}
+            </div>
             <div style={{ height: 10 }}></div>
-            {await getCheckboxSelector(true, true, 50)}
+            <div
+                style={{
+                    height: "fit-content",
+                    maxHeight: "300px",
+                    backgroundColor: "lightgrey",
+                    padding: "15px",
+                    overflow: "auto",
+                    overflowX: "hidden",
+                    overflowY: "auto",
+                }}>
+                {await getCheckboxSelector(true, true, 50)}
+            </div>
         </div>
     );
 }
