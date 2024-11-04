@@ -27,6 +27,9 @@ import {
 import { AddCheckboxSelectorAction, AddDropdownSelectorAction, SelectDropdownSelectorAction } from "./action/SelectorAction";
 import { GetCheckboxSelectorState, GetDropdownSelectorState } from "./selector/SelectorSelector";
 import { TianyuReact } from "tianyu-shell-react";
+import { AddNavigationItemAction, ClickNavigationItemAction } from "./action/navigation/NavigationItemAction";
+import { GetNavigationItemState } from "./selector/navigation/NavigationItemSelector";
+import { GetNavigatorDisplayState } from "./selector/navigation/NavigatorSelector";
 
 export const StoreInterfaceImpl = {
     core: {
@@ -86,6 +89,18 @@ export const StoreInterfaceImpl = {
                     state: GetCheckboxSelectorState,
                 },
             },
+
+            navigator: {
+                button: {
+                    add: AddNavigationItemAction,
+                    click: ClickNavigationItemAction,
+                    state: GetNavigationItemState,
+                },
+
+                container: {
+                    displayType: GetNavigatorDisplayState,
+                },
+            },
         },
 
         container: {},
@@ -96,3 +111,6 @@ StoreInterfaceImpl as ITianyuStoreInterface<AppStoreState>;
 StoreInterfaceImpl as TianyuReact.Template.Button;
 StoreInterfaceImpl as TianyuReact.Template.DropdownSelector;
 StoreInterfaceImpl as TianyuReact.Template.CommonSelector;
+
+StoreInterfaceImpl as TianyuReact.Template.Navigation.NavigationItemStoreTemplate;
+StoreInterfaceImpl as TianyuReact.Template.Navigation.NavigatorStoreTemplate;

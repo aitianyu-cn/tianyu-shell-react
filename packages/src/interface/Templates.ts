@@ -6,4 +6,13 @@ import {
     SelectorStoreTemplate as CommonSelector,
 } from "model/interface/SelectorInterface";
 
-export { type Button, type DropdownSelector, type CommonSelector, type IGroupedButtonTemplate, type ISingleButtonTemplate };
+import * as Navigation from "model/interface/NavigationInterface";
+
+export {
+    type Button,
+    type DropdownSelector,
+    type CommonSelector,
+    type IGroupedButtonTemplate,
+    type ISingleButtonTemplate,
+    Navigation,
+};

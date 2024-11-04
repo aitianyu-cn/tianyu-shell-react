@@ -1,11 +1,16 @@
 /** @format */
 
-import { DisplayDirectionType } from "types/Common";
+export type NavigatorDisplayType = "horizontal" | "vertical" | "narrow";
 
-export interface INavigationItemProperty {
-    group: string;
-    assist: boolean;
-    type: DisplayDirectionType;
+export interface INavigationItemBaseProperty {
+    id: string;
+    containerId: string;
 }
+
+export interface INavigationItemProperty extends INavigationItemBaseProperty {}
+
+export interface INavigationViewItemProperty extends INavigationItemBaseProperty {}
+
+export interface INavigationListProperty extends INavigationItemBaseProperty {}
 
 export interface INavigatorProperty {}

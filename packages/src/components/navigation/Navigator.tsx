@@ -1,7 +1,7 @@
 /** @format */
 
-import { ControlledElement } from "model/ControlledElement";
-import { INavigatorState } from "model/store/NavigationState";
 import { INavigatorProperty } from "types/widget/Navigation";
+import { NavigatorBase } from "./NavigatorBase";
+import { INavigatorState } from "model/store/NavigationState";
 
-export class Navigator extends ControlledElement<INavigatorProperty, INavigatorState> {}
+export class Navigator extends NavigatorBase<INavigatorProperty, INavigatorState> {}

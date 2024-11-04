@@ -6,6 +6,7 @@
  * Provides two types type: URL and Inline.
  *
  * URL: is a link of icon
+ *
  * Inline: a local string or object of icon
  */
 export type SourceIconType = "url" | "inline";

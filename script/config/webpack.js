@@ -7,7 +7,7 @@ module.exports = {
         ignore: /node_modules/,
     },
     devServer: {
-        port: 8000,
+        port: 3000,
         host: "0.0.0.0",
     },
 };

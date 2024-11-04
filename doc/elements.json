@@ -14,9 +14,17 @@
     },
     "container": {
         "navigation": {
-            "navigation-item": "navigation single button",
-            "navigation-view": "a view only navigation item, support url jump",
-            "navigation-list": "a navigation button supporting to click dropdown list"
+            "navigator": {
+                "navigator-base": "a generic navigator which is the base of all navigators",
+                "navigator": "a default navigator with automatic switch between horizontal and vertical according to the web page width.",
+                "horizontal-navigator": "a horizontal layout navigator",
+                "vertical-navigator": "a vertical layout navigator"
+            },
+            "navigation-elements": {
+                "navigation-item": "navigation single button",
+                "navigation-view": "a view only navigation item, support url jump",
+                "navigation-list": "a navigation button supporting to click dropdown list"
+            }
         },
         "content": {}
     }

@@ -188,6 +188,50 @@ export const StoreInterfaceExpose = {
                     state: SelectorFactor.makeVirtualParameterSelector<AppStoreState, string, TianyuReact.State.ISelectorState>(),
                 },
             },
+
+            navigator: {
+                button: {
+                    add: ActionFactor.makeVirtualAction<
+                        AppStoreState,
+                        {
+                            id: string;
+                        } & TianyuReact.State.INavigationItemState,
+                        {
+                            id: string;
+                        } & TianyuReact.State.INavigationItemState
+                    >(),
+                    click: ActionFactor.makeVirtualAction<
+                        AppStoreState,
+                        {
+                            containerId: string;
+                            id: string;
+                        },
+                        {
+                            containerId: string;
+                            id: string;
+                        }
+                    >(),
+                    state: SelectorFactor.makeVirtualParameterSelector<
+                        AppStoreState,
+                        {
+                            containerId: string;
+                            id: string;
+                        },
+                        TianyuReact.State.INavigationItemState
+                    >(),
+                },
+
+                container: {
+                    displayType: SelectorFactor.makeVirtualParameterSelector<
+                        AppStoreState,
+                        string,
+                        {
+                            type: TianyuReact.Types.NavigatorDisplayType;
+                            expand: boolean;
+                        }
+                    >(),
+                },
+            },
         },
 
         container: {},

@@ -6,6 +6,7 @@ import { renderCheckboxButton, renderNormalButton, renderRadioButton, renderTogg
 import { renderCheckboxSelector, renderDropdownSelector } from "./render/RenderSelector";
 
 import "./style.css";
+import { renderNavigationItem } from "./render/RenderNavigation";
 
 export async function App(div: HTMLElement): Promise<void> {
     const root = ReactDOM.createRoot(div);
@@ -26,6 +27,11 @@ export async function App(div: HTMLElement): Promise<void> {
                 <div>{await renderDropdownSelector()}</div>
                 <div style={{ height: 1, margin: 10, backgroundColor: "#eeeeee" }}></div>
                 <div>{await renderCheckboxSelector()}</div>
+                <div style={{ height: 1, margin: 10, backgroundColor: "#eeeeee" }}></div>
+            </div>
+
+            <div style={{ width: "100%", height: "fit-content", backgroundColor: "#AAAAAA", margin: 10 }}>
+                <div>{await renderNavigationItem()}</div>
                 <div style={{ height: 1, margin: 10, backgroundColor: "#eeeeee" }}></div>
             </div>
         </div>,

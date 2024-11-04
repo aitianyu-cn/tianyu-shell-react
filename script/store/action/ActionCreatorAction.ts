@@ -15,6 +15,16 @@ export const ActionCreatorAction = ActionFactor.makeCreateStoreAction<AppStoreSt
             dropdown: {},
             checkbox: {},
         },
+        navigation: {
+            item: {
+                type: "vertical",
+                expand: true,
+                normal: {},
+                view: {},
+                list: {},
+            },
+            container: {},
+        },
     };
 });
 
